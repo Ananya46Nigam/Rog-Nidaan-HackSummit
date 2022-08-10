@@ -1,0 +1,64 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <title>Flask_Chat_App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/session.css') }}">
+  </head>
+  <body>
+    <h1 class="chat-header">Rog Nidaan Forum</h1>
+    <h2 style='text-align:center; margin-top:25px;'>A safe space for people to get together and share their experiences, survivor stories or simply have fun !</h5>
+    <h3 style='color: #ccc;font-size: 30px; text-align:center; margin-top:50px;'>No messages yet..</h3>
+    <h3 style='color: #ccc;font-size: 30px; text-align:center;'>Start the conversation !</h3>
+    <div class="message-holder"></div>
+
+    <form action="" method="POST" class="chat-form">
+      <input type="text" class="username" placeholder="Username"/>
+      <input type="textarea" class="message" placeholder="Type your message out here.."/>
+      <input type="submit" value='SEND' class="send-btn"/>
+    </form>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+      socket.on( 'connect', function() {
+        socket.emit( 'my event', {
+          data: 'User Connected'
+        } )
+        var form = $( 'form' ).on( 'submit', function( e ) {
+          e.preventDefault()
+          let user_name = $( 'input.username' ).val()
+          let user_input = $( 'input.message' ).val()
+          socket.emit( 'my event', {
+            user_name : user_name,
+            message : user_input
+          } )
+          $( 'input.message' ).val( '' ).focus()
+        } )
+      } )
+      socket.on( 'my response', function( msg ) {
+        console.log( msg )
+        if( typeof msg.user_name !== 'undefined' ) {
+          $( 'h3' ).remove()
+          $( 'div.message-holder' ).append( '<div><div class="user-profile">'+msg.user_name+'</div><div class="chat-bubble">'+msg.message+'</div></div>' )
+        }
+      })
+    </script>
+    <script>
+  window.watsonAssistantChatOptions = {
+      integrationID: "a8285402-94e8-437f-8327-68d080441a0e", // The ID of this integration.
+      region: "eu-de", // The region your integration is hosted in.
+      serviceInstanceID: "d0cc4c51-7166-4020-8f84-4d06c5153f2c", // The ID of your service instance.
+      onLoad: function(instance) { instance.render(); }
+    };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js"
+    document.head.appendChild(t);
+  });
+</script>
+  </body>
+  </html>

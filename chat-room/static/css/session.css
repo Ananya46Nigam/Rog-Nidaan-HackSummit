@@ -1,0 +1,72 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+
+}
+.chat-bubble{
+  background-color: #70e1f5;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  display:inline-block;
+  margin-bottom: 20px;
+}
+.user-profile{
+  background-color: black;
+  color:white;
+  width:fit-content;
+  padding: 10px;
+  border-radius: 20px;
+  display:inline-block;
+  margin: 20px 10px 2px;
+  margin-left: 20px;
+
+}
+.chat-header{
+  /*background-color: #FFDF00;/*#9400D3*/
+
+  /*background: #d38312; /* fallback for old browsers */
+  /*background: -webkit-linear-gradient(to right, #d38312, #a83279); /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(to right, #d38312, #a83279);*/
+  background: #70e1f5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+text-transform: uppercase;
+letter-spacing: 1px;
+  color: white;
+  padding: 20px 50px;
+  text-align:center;
+}
+
+.chat-form{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+.send-btn{
+  padding: 10px;
+  color: white;
+  background-color: #000;
+  border-radius: 10px;
+  margin-left: 10px;
+  border: none;
+}
+
+.username, .message{
+  padding: 10px 10px;
+}
+
+.message{
+  width: 600px;
+  margin-left: 10px;
+}
+
+.username{
+  margin-left: 20px;
+}
